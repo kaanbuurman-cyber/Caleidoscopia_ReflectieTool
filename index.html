@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reflectie Ervaring</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- BOVENBALK -->
+  <header class="topbar">
+    <img src="assets/logo.png" alt="Logo" class="logo" />
+  </header>
+
+  <!-- STAP 1 -->
+  <section class="step active" id="step-1">
+    <h1>Stap 1</h1>
+
+    <label>
+      Hoe kijk je aan tegen ... als werkgever?
+      <textarea id="q1"></textarea>
+    </label>
+
+    <label>
+      Hoe kijken je collega's naar jou?
+      <textarea id="q2"></textarea>
+    </label>
+
+    <label>
+      In hoeverre voel je je prettig op je plek?
+      <textarea id="q3"></textarea>
+    </label>
+
+    <button type="button" class="next-btn">Volgende</button>
+  </section>
+
+  <!-- STAP 2 -->
+  <section class="step" id="step-2">
+    <h1>Stap 2 - Nieuw profiel</h1>
+
+    <div class="profile-item">
+      <span>Gender</span>
+      <strong id="gender-result">—</strong>
+      <button type="button" class="random-btn" data-key="gender">Randomize</button>
+    </div>
+
+    <div class="profile-item">
+      <span>Seksuele oriëntatie</span>
+      <strong id="orientation-result">—</strong>
+      <button type="button" class="random-btn" data-key="orientation">Randomize</button>
+    </div>
+
+    <div class="profile-item">
+      <span>Levensfase</span>
+      <strong id="lifephase-result">—</strong>
+      <button type="button" class="random-btn" data-key="lifephase">Randomize</button>
+    </div>
+
+    <div class="profile-item">
+      <span>Etniciteit</span>
+      <strong id="ethnicity-result">—</strong>
+      <button type="button" class="random-btn" data-key="ethnicity">Randomize</button>
+    </div>
+
+    <div class="profile-item">
+      <span>Levensvisie</span>
+      <strong id="vision-result">—</strong>
+      <button type="button" class="random-btn" data-key="vision">Randomize</button>
+    </div>
+
+    <div class="profile-item">
+      <span>Mentale/fysieke variatie</span>
+      <strong id="ability-result">—</strong>
+      <button type="button" class="random-btn" data-key="ability">Randomize</button>
+    </div>
+
+    <div class="profile-item">
+      <span>Sociale klassse</span>
+      <strong id="class-result">—</strong>
+      <button type="button" class="random-btn" data-key="class">Randomize</button>
+    </div>
+
+    <button type="button" class="next-btn">Volgende</button>
+    <button type="button" class="back-btn">Terug</button>
+  </section>
+
+  <!-- STAP 3 -->
+  <section class="step" id="step-3">
+    <h1>Reflectie</h1>
+
+    <label>
+      Schrijf op wie je nu bent geworden.
+      <textarea id="reflection"></textarea>
+    </label>
+
+    <button type="button" class="next-btn">Volgende</button>
+    <button type="button" class="back-btn">Terug</button>
+  </section>
+
+  <!-- STAP 4 -->
+  <section class="step" id="step-4">
+    <h1>Reflectie - opnieuw</h1>
+
+    <label>
+      Hoe kijk je aan tegen ... als werkgever?
+      <textarea id="end-q1"></textarea>
+    </label>
+
+    <label>
+      Hoe kijken je collega's naar jou?
+      <textarea id="end-q2"></textarea>
+    </label>
+
+    <label>
+      In hoeverre voel je je prettig op je plek?
+      <textarea id="end-q3"></textarea>
+    </label>
+
+    <button type="button" class="next-btn">Bekijk resultaat</button>
+    <button type="button" class="back-btn">Terug</button>
+  </section>
+
+  <!-- RESULTAAT -->
+  <section class="step" id="step-5">
+  <div id="pdf-content">
+
+  <h1>Jouw reflectie</h1>
+
+  <div class="compare-container">
+    <div class="compare-box">
+      <h2>Voor</h2>
+
+      <p><strong>... als werkgever</strong></p>
+      <p id="before-q1"></p>
+
+      <p><strong>Hoe collega's je zien</strong></p>
+      <p id="before-q2"></p>
+
+      <p><strong>Hoe prettig je je voelt</strong></p>
+      <p id="before-q3"></p>
+    </div>
+
+    <div class="compare-box">
+      <h2>Na</h2>
+
+      <p><strong>... als werkgever</strong></p>
+      <p id="after-q1"></p>
+
+      <p><strong>Hoe collega's je zien</strong></p>
+      <p id="after-q2"></p>
+
+      <p><strong>Hoe prettig je je voelt</strong></p>
+      <p id="after-q3"></p>
+    </div>
+  </div>
+
+  <button type="button" id="download-pdf" class="no-pdf">Download als PDF</button>
+
+  </div>
+</section>
+
+  <!-- SCRIPT -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="script.js" defer></script>
+</body>
+</html>
