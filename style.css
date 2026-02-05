@@ -104,3 +104,35 @@ button {
   margin-right: 10px;
   background-color: #eee;
 }
+button:disabled {
+  opacity: 0.5;
+}
+.profile-summary {
+  border: 2px solid #afc4da;
+  background-color: #f2f6fb;
+  padding: 20px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+
+.profile-summary h2 {
+  margin-top: 0;
+}
+
+.profile-summary ul {
+  list-style: none;
+  padding: 0;
+}
+
+.profile-summary li {
+  margin-bottom: 8px;
+}
+.profile-intro {
+  margin: 0 0 6px 0;
+  font-size: 0.95em;
+  color: #555;
+  font-weight: 600;
+}
+#profile-summary {
+  display: none;
+}

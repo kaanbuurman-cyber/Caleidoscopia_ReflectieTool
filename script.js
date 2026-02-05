@@ -8,17 +8,47 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let currentStep = 0;
 
-  function showStep(index) {
-    steps.forEach(step => step.classList.remove("active"));
-    steps[index].classList.add("active");
+function showStep(index) {
+  steps.forEach(step => step.classList.remove("active"));
+  steps[index].classList.add("active");
+
+  const profileSummary = document.getElementById("profile-summary");
+  const currentStepId = steps[index].id;
+
+  // 👉 Alleen tonen bij stap 3 en stap 4
+  if (currentStepId === "step-3" || currentStepId === "step-4") {
+    profileSummary.style.display = "block";
+    loadProfileSummary();
+  } else {
+    profileSummary.style.display = "none";
   }
+}
+
+function loadProfileSummary() {
+  const keys = [
+    "gender",
+    "orientation",
+    "lifephase",
+    "ethnicity",
+    "vision",
+    "ability",
+    "class"
+  ];
+
+  keys.forEach(key => {
+    const el = document.getElementById(`sum-${key}`);
+    if (el) {
+      el.textContent = localStorage.getItem(key) || "—";
+    }
+  });
+}
+
 
   // VOLGENDE
   nextButtons.forEach(button => {
     button.addEventListener("click", () => {
 
       if (currentStep === 0) saveStep1Answers();
-      if (currentStep === 2) saveReflection();
       if (currentStep === 3) saveStep4Answers();
 
       if (currentStep < steps.length - 1) {
@@ -120,10 +150,39 @@ document.addEventListener("DOMContentLoaded", () => {
         clearInterval(interval);
         const finalIndex = Math.floor(Math.random() * options.length);
         resultEl.textContent = options[finalIndex];
+        localStorage.setItem(key, options[finalIndex]);
+
       }, 1200);
     });
   });
 });
+const randomButtons = document.querySelectorAll('.random-btn');
+
+randomButtons.forEach((button) => {
+  const key = button.dataset.key;
+
+  // Als dit onderdeel al gerandomized is → knop uitzetten
+  if (sessionStorage.getItem(key)) {
+    button.disabled = true;
+    button.textContent = 'Al bepaald';
+  }
+
+  button.addEventListener('click', () => {
+    // Check: al gebruikt?
+    if (sessionStorage.getItem(key)) return;
+
+    // 👉 JOUW bestaande randomize-functie
+    randomizeProfilePart(key);
+
+    // Onthouden dat deze is gebruikt
+    sessionStorage.setItem(key, 'done');
+
+    // Knop uitzetten
+    button.disabled = true;
+    button.textContent = 'Al bepaald';
+  });
+});
+
 
 // ---------- OPSLAAN FUNCTIES ----------
 
@@ -131,10 +190,6 @@ function saveStep1Answers() {
   localStorage.setItem("q1", document.getElementById("q1").value);
   localStorage.setItem("q2", document.getElementById("q2").value);
   localStorage.setItem("q3", document.getElementById("q3").value);
-}
-
-function saveReflection() {
-  localStorage.setItem("reflection", document.getElementById("reflection").value);
 }
 
 function saveStep4Answers() {
@@ -152,6 +207,10 @@ function loadResults() {
   document.getElementById("after-q2").textContent = localStorage.getItem("end-q2") || "";
   document.getElementById("after-q3").textContent = localStorage.getItem("end-q3") || "";
 }
+function randomizeProfilePart(key) {
+  // jouw bestaande logica
+}
+
 // ---------- PDF DOWNLOAD ----------
 
 const downloadBtn = document.getElementById("download-pdf");
